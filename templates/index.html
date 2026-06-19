@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Clasificador Inteligente de Gatos y Perros</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<div class="contenedor">
+
+    <h1>🐶🐱 Clasificador Inteligente</h1>
+    <p class="subtitulo">
+        Detección automática de gatos y perros mediante IA
+    </p>
+
+    <form action="/clasificar"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="imagen"
+               required>
+
+        <button type="submit">
+            🔍 Analizar Imagen
+        </button>
+
+    </form>
+
+    {% if imagen %}
+
+    <div class="resultado">
+
+        <img src="{{ imagen }}"
+             class="foto">
+
+        <h2>{{ resultado }}</h2>
+
+        <div class="barra">
+            <div class="barra-interna"
+                 style="width: {{ confianza }}%;">
+            </div>
+        </div>
+
+        <h3>Confianza: {{ confianza }}%</h3>
+
+        <div class="info">
+            🤖 Modelo utilizado: MobileNetV2
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
